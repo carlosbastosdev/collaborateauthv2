@@ -1,0 +1,28 @@
+flowchart TB
+    subgraph Login["Login (Authorization Code + PKCE)"]
+        Staff[Firm staff] --> CIAS
+        External[External client user] --> CIAS
+        CIAS[Collaborate Identity & Authorization Service] -->|"OIDC RP"| CasewareIdP[Caseware central IdP]
+        CIAS -->|"per-firm federation"| FirmIdP["Firm's own SAML/OIDC IdP"]
+    end
+
+    subgraph PermissionChecking["Permission checking (PDP)"]
+        DB[(Collaborate DB: roles, overrides, firm policy)] -->|outbox events| Worker[Cache-update worker]
+        Worker --> Cache[(Redis: Permissions Cache)]
+        DocAPI[Document Service] -->|JWT verify, local| DocAPI
+        DocAPI -->|cache read| Cache
+        FinAPI[Financial Data API] --> Cache
+        CommentsAPI[Comments Service] --> Cache
+        Cache -.->|cache miss fallback| DB
+        Worker -->|pub/sub push, seconds| CollabSession["Long-lived collaboration session"]
+    end
+
+    subgraph OnBehalfOf["On-behalf-of (RFC 8693 Token Exchange)"]
+        ClientSystem["Client's own system"] -->|subject_token = employee| CIAS
+        NotifSvc["Internal service e.g. notification-service"] -->|subject_token = user| CIAS
+        CIAS -->|"narrow token: aud=1 API, scope subset, act=actor, sub=user, short TTL"| DownstreamAPI[Target resource API]
+    end
+
+    CIAS -->|access/ID tokens| DocAPI
+    CIAS -->|access/ID tokens| FinAPI
+    CIAS -->|access/ID tokens| CommentsAPI

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    Vendored instead of PackageReference'd — see README.md "Offline build note".
+    In a normal (network-connected) environment these five lines would instead be:
+
+      <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.7.3" />
+
+    (System.IdentityModel.Tokens.Jwt / Microsoft.IdentityModel.Tokens / .Logging / .Abstractions
+    all come along transitively). The DLLs below are the exact same 7.7.3 binaries, extracted
+    from the .NET 8 SDK's own `dotnet-user-jwts` tool, which ships them locally.
+  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens">
+      <HintPath>..\..\lib\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens">
+      <HintPath>..\..\lib\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging">
+      <HintPath>..\..\lib\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions">
+      <HintPath>..\..\lib\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>..\..\lib\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
