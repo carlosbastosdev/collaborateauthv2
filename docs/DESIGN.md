@@ -21,7 +21,7 @@ flowchart TB
         DocAPI[Document Service] -->|cache read| Cache
         FinAPI[Financial Data API] --> Cache
         CommentsAPI[Comments Service] --> Cache
-        Cache -.->|cache miss fallback| DB
+        Cache -->|cache miss fallback| DB
         Worker -->|pub/sub push, seconds| CollabSession["Long-lived collaboration session"]
     end
 
@@ -80,7 +80,9 @@ sequenceDiagram
     CIAS-->>Notif: access_token (narrow, short-lived)
 
     Notif->>Target: Call downstream API with narrow token
-    Target->>Target: Validate token; authorize against sub (the USER), not the service
+        Target->>Target: Validate token and authorize as the user not the service
+        Target-->>Notif: Response scoped to what the user can see
+        Target->>Target: Validate token -  authorize against sub (the USER) not the service
     Target-->>Notif: Response scoped to what the user can see
 ```
 
