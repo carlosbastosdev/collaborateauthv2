@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    Ordinary PackageReference, restored from nuget.org — see README.md "Build note" for the
+    (now-resolved) sandbox constraint that once forced vendoring these DLLs directly instead.
+    Microsoft.IdentityModel.Tokens / .Logging / .Abstractions come along transitively; no need
+    to list them explicitly.
+  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.7.3" />
+  </ItemGroup>
+
+</Project>

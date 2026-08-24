@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80E922CB-7B6F-45F5-BD48-B7F837963195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collaborate.Auth.Core", "src\Collaborate.Auth.Core\Collaborate.Auth.Core.csproj", "{F78F95E8-83FA-48E9-9638-410A9FB71692}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collaborate.Auth.Api", "src\Collaborate.Auth.Api\Collaborate.Auth.Api.csproj", "{A84418F1-653A-4DD8-875F-8E9999C5BBC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C54BD04-B493-460C-85ED-7E39DFCF8AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collaborate.Auth.Tests", "tests\Collaborate.Auth.Tests\Collaborate.Auth.Tests.csproj", "{C70227C8-0F5C-42E4-B22E-77C5B9D11C54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{3DC00F63-BA80-4879-9D2B-BE159D473C4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collaborate.Auth.DevTools", "tools\Collaborate.Auth.DevTools\Collaborate.Auth.DevTools.csproj", "{8092AC84-FB40-4C60-B006-B50C3C422DA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F78F95E8-83FA-48E9-9638-410A9FB71692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78F95E8-83FA-48E9-9638-410A9FB71692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78F95E8-83FA-48E9-9638-410A9FB71692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78F95E8-83FA-48E9-9638-410A9FB71692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84418F1-653A-4DD8-875F-8E9999C5BBC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84418F1-653A-4DD8-875F-8E9999C5BBC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84418F1-653A-4DD8-875F-8E9999C5BBC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84418F1-653A-4DD8-875F-8E9999C5BBC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C70227C8-0F5C-42E4-B22E-77C5B9D11C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C70227C8-0F5C-42E4-B22E-77C5B9D11C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C70227C8-0F5C-42E4-B22E-77C5B9D11C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C70227C8-0F5C-42E4-B22E-77C5B9D11C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8092AC84-FB40-4C60-B006-B50C3C422DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8092AC84-FB40-4C60-B006-B50C3C422DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8092AC84-FB40-4C60-B006-B50C3C422DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8092AC84-FB40-4C60-B006-B50C3C422DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F78F95E8-83FA-48E9-9638-410A9FB71692} = {80E922CB-7B6F-45F5-BD48-B7F837963195}
+		{A84418F1-653A-4DD8-875F-8E9999C5BBC9} = {80E922CB-7B6F-45F5-BD48-B7F837963195}
+		{C70227C8-0F5C-42E4-B22E-77C5B9D11C54} = {3C54BD04-B493-460C-85ED-7E39DFCF8AF8}
+		{8092AC84-FB40-4C60-B006-B50C3C422DA9} = {3DC00F63-BA80-4879-9D2B-BE159D473C4E}
+	EndGlobalSection
+EndGlobal

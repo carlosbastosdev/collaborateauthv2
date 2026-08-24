@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant U as User
+    participant CommentsAPI as Comments Service
+    participant Notif as notification-service (internal)
+    participant CIAS as CIAS /api/token-exchange
+    participant Reg as Delegation Registry
+    participant Target as Downstream Resource API
+
+    U->>CommentsAPI: Post comment (bearer: user access token)
+    CommentsAPI->>Notif: Trigger "comment posted" event
+    Note over Notif: Notif holds its OWN service token<br/>(scope=token-exchange) + the user's<br/>original token from the event payload
+
+    Notif->>CIAS: POST /api/token-exchange<br/>Authorization: Bearer <service token><br/>subject_token=<user token>, audience=comments-api
+    CIAS->>CIAS: AuthN caller (service token) via JsonWebTokenHandler
+    CIAS->>CIAS: AuthZ: caller has "token-exchange" scope?
+    CIAS->>CIAS: Validate subject_token (user token)
+    CIAS->>Reg: May notification-service act for users against comments-api?
+    Reg-->>CIAS: Yes, max scope = {comments.read}
+    CIAS->>CIAS: grantedScope = requested ∩ subject.scopes ∩ grant.maxScopes
+    CIAS->>CIAS: Mint token: sub=user, aud=comments-api,<br/>scope=comments.read, act={sub:notification-service}, exp=+60s
+    CIAS-->>Notif: access_token (narrow, short-lived)
+
+    Notif->>Target: Call downstream API with narrow token
+    Target->>Target: Validate token; authorize against sub (the USER), not the service
+    Target-->>Notif: Response scoped to what the user can see
